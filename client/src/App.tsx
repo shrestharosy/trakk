@@ -1,25 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container, AppBar, Typography, Grid, Grow } from '@material-ui/core';
+
+import useStyles from './styles';
+
+import MainRouters from './routers';
 
 function App() {
+  const clasees = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Container maxWidth={'lg'}>
+        <AppBar
+          className={clasees.appBar}
+          position={'static'}
+          color={'inherit'} 
+        />
+        <Typography className={clasees.heading} variant={'h2'} align={'center'}>
+          Trackk
+        </Typography>
+        <MainRouters />
+      </Container>
+    </>
   );
 }
 
