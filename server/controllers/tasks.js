@@ -10,11 +10,21 @@ export const getTasks = async (req, res) => {
 };
 
 export const createTask = async (req, res) => {
-  const task = req.body;
-  const newTask = new TaskModel(task);
+  const taskDetails = req.body;
+  const newTask = new TaskModel(taskDetails);
   try {
     await newTask.save();
     res.status(201).json(newTask);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export const getTaskById = async (req, res) => {
+  try {
+    const taskId = req.params.id;
+    const task = await TaskModel.findById(taskId);
+    res.status(200).json(task);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
