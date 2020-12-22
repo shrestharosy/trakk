@@ -11,7 +11,7 @@ dotenv.config();
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
-
+// specify cors before actual routes to avoid cors issue
 app.use("/tasks", postRoutes);
 
 const { MONGO_ATLAS_USERNAME, MONGO_ATLAS_PASSWORD, PORT } = process.env;
@@ -24,7 +24,7 @@ mongoose
   .connect(CONNECTION_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
   })
   .then(() => {
     app.listen(port, () => console.log(`Server running on port ${port}`));

@@ -29,3 +29,28 @@ export const getTaskById = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+export const updateTask = async (req, res) => {
+  try {
+    const taskId = req.params.id;
+    const { description, creator, status } = req.body;
+    let task = await TaskModel.findById(taskId);
+    task.description = description;
+    task.creator = creator;
+    task.status = status;
+    const updatedTask = await task.save();
+    res.status(200).json(updatedTask);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export const deleteTask = async (req, res) => {
+  try {
+    const taskId = req.params.id;
+    await TaskModel.findByIdAndDelete(taskId);
+    res.status(201).json("Task deleted");
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
