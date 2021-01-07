@@ -1,23 +1,35 @@
 import React from 'react';
-import { Container, AppBar, Typography } from '@material-ui/core';
+import {
+  Container,
+  AppBar,
+  Typography,
+  Toolbar,
+  IconButton,
+  Button,
+} from '@material-ui/core';
 
 import useStyles from './styles';
 
 import MainRouters from './routers';
 
 function App() {
-  const clasees = useStyles();
+  const classes = useStyles();
   return (
     <>
-      <Container maxWidth={'lg'}>
+      <Container>
         <AppBar
-          className={clasees.appBar}
-          position={'static'}
-          color={'inherit'}
-        />
-        <Typography className={clasees.heading} variant={'h2'} align={'center'}>
-          {/* Trackk */}
-        </Typography>
+          position="static"
+          // className={classes.appBar}
+        >
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+            ></IconButton>
+            <Typography variant="h6">Trakk</Typography>
+          </Toolbar>
+        </AppBar>
         <MainRouters />
       </Container>
     </>

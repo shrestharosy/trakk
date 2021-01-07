@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Board from './Board';
 import { getBoards } from 'services/boards';
 import { IBoard } from 'services/boards/types';
-import Loader from 'components/Card/Loader';
+import Loader from 'components/Loader';
 
 const Boards = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +26,7 @@ const Boards = () => {
 
   return (
     <>
-      <h1>Board</h1>
+      <h1>Boards</h1>
       {isLoading && <Loader />}
       {!isLoading && boards.length == 0 ? (
         <span>No boards found</span>
