@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, AppBar, Typography, Grid, Grow } from '@material-ui/core';
+import { Container, AppBar, Typography } from '@material-ui/core';
 
 import useStyles from './styles';
 
@@ -13,10 +13,10 @@ function App() {
         <AppBar
           className={clasees.appBar}
           position={'static'}
-          color={'inherit'} 
+          color={'inherit'}
         />
         <Typography className={clasees.heading} variant={'h2'} align={'center'}>
-          Trackk
+          {/* Trackk */}
         </Typography>
         <MainRouters />
       </Container>
