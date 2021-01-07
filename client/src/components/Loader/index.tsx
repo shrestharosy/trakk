@@ -1,5 +1,7 @@
+import { CircularProgress } from '@material-ui/core';
+
 const Loader = () => {
-  return <h2>Loading...</h2>;
+  return <CircularProgress />;
 };
 
 export default Loader;

@@ -5,7 +5,6 @@ import {
   Typography,
   Toolbar,
   IconButton,
-  Button,
 } from '@material-ui/core';
 
 import useStyles from './styles';
@@ -19,7 +18,7 @@ function App() {
       <Container>
         <AppBar
           position="static"
-          // className={classes.appBar}
+          className={classes.appBar}
         >
           <Toolbar>
             <IconButton

@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import moment from 'moment-mini';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import {
   Card,
@@ -31,7 +32,11 @@ const CardComponent: FC<ICardComponentProps> = props => {
             {user.charAt(0).toUpperCase()}
           </Avatar>
         }
-        action={<IconButton aria-label="settings">...</IconButton>}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={title}
         subheader={moment(date).format('DD MMM YYYY hh:mm A')}
       />
