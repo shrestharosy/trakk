@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import postRoutes from "./routes/tasks.js";
+import taskRoutes from "./routes/tasks.js";
+import boardRoutes from "./routes/boards.js";
 
 const app = express();
 dotenv.config();
@@ -12,7 +13,8 @@ app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 // specify cors before actual routes to avoid cors issue
-app.use("/tasks", postRoutes);
+app.use("/tasks", taskRoutes);
+app.use("/boards", boardRoutes);
 
 const { MONGO_ATLAS_USERNAME, MONGO_ATLAS_PASSWORD, PORT } = process.env;
 

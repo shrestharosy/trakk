@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 
+import { DONE, IN_PROGRESS, TO_DO } from "../constants/index.js";
+
 const taskSchema = mongoose.Schema({
   description: {
     type: String,
-    required: true
+    required: true,
   },
   creator: {
     type: String,
@@ -11,7 +13,11 @@ const taskSchema = mongoose.Schema({
   },
   status: {
     type: String,
-    required: true
+    enum: [TO_DO, IN_PROGRESS, DONE],
+    required: true,
+  },
+  parentId: {
+    type: String,
   },
   createdAt: {
     type: Date,
@@ -20,6 +26,6 @@ const taskSchema = mongoose.Schema({
 });
 
 // turn schema to model
-const TaskModel = mongoose.model("TaskModel", taskSchema);
+const TaskModel = mongoose.model("Task", taskSchema);
 
 export default TaskModel;
