@@ -6,6 +6,9 @@ const boardSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String
+    },
     creator: {
       type: String,
       required: true,
