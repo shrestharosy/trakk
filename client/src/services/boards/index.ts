@@ -15,7 +15,7 @@ export async function getBoardsAPI() {
 interface ICreateBoardParams {
   title: string;
   creator: string;
-  description? : string;
+  description?: string;
 }
 
 export async function createBoardAPI(payload: ICreateBoardParams) {
@@ -23,6 +23,17 @@ export async function createBoardAPI(payload: ICreateBoardParams) {
     const response: AxiosResponse<IBoard> = await axios.post(
       'boards/add',
       payload
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function deleteBoardAPI(boardId: string) {
+  try {
+    const response: AxiosResponse<IBoard> = await axios.delete(
+      `boards/${boardId}`
     );
     return response.data;
   } catch (error) {

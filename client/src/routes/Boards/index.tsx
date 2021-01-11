@@ -4,7 +4,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { useForm, FormProvider } from 'react-hook-form';
 
 import Board from './Board';
-import { createBoardAPI, getBoardsAPI } from 'services/boards';
+import { createBoardAPI, deleteBoardAPI, getBoardsAPI } from 'services/boards';
 import { IBoard } from 'services/boards/types';
 import Loader from 'components/Loader';
 import Popup from 'components/Popup';
@@ -42,12 +42,21 @@ const Boards = () => {
       });
       alert('Board created successfully');
       setIsAddBoardFormOpen(false);
-      loadBoards();
+      await loadBoards();
     } catch (error) {
       alert('Error while creating board');
     }
   };
 
+  const deleteBoard = async (boardId: string) => {
+    try {
+      await deleteBoardAPI(boardId);
+      alert('Board deleted successfully');
+      await loadBoards();
+    } catch (error) {
+      alert('Error while deleting board');
+    }
+  };
   return (
     <>
       <Grid container justify="center" alignItems="center">
@@ -70,7 +79,9 @@ const Boards = () => {
       {!isLoading && boards.length === 0 ? (
         <span>No boards found</span>
       ) : (
-        boards.map(board => <Board key={board._id} board={board} />)
+        boards.map(board => (
+          <Board key={board._id} board={board} onDelete={deleteBoard} />
+        ))
       )}
       {isAddBoardFormOpen && (
         <Popup title={'Add board'} onClose={() => setIsAddBoardFormOpen(false)}>
