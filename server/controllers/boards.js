@@ -19,3 +19,12 @@ export const createBoard = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+export const deleteBoard = async (req, res) => {
+  try {
+    await BoardModel.findByIdAndDelete(req.params.id);
+    res.status(200).json(`Board ${req.params.id} deleted`);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};

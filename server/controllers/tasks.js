@@ -49,7 +49,7 @@ export const deleteTask = async (req, res) => {
   try {
     const taskId = req.params.id;
     await TaskModel.findByIdAndDelete(taskId);
-    res.status(201).json("Task deleted");
+    res.status(200).json("Task deleted");
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
