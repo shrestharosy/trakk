@@ -1,5 +1,6 @@
-import CardComponent from 'components/Card';
 import { FC } from 'react';
+
+import CardComponent from 'components/Card';
 import { IBoard } from 'services/boards/types';
 
 interface IBoardProps {

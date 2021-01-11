@@ -3,9 +3,27 @@ import axios from 'utils/axios';
 
 import { IBoard } from './types';
 
-export async function getBoards() {
+export async function getBoardsAPI() {
   try {
-    const response : AxiosResponse<IBoard[]> = await axios('/boards');
+    const response: AxiosResponse<IBoard[]> = await axios('/boards');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+interface ICreateBoardParams {
+  title: string;
+  creator: string;
+  description? : string;
+}
+
+export async function createBoardAPI(payload: ICreateBoardParams) {
+  try {
+    const response: AxiosResponse<IBoard> = await axios.post(
+      'boards/add',
+      payload
+    );
     return response.data;
   } catch (error) {
     throw error;
