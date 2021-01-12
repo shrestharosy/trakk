@@ -1,5 +1,6 @@
 import express from "express";
-import { getBoards, createBoard, deleteBoard } from "../controllers/boards.js";
+
+import { createBoard, deleteBoard, getBoards } from "./controller";
 
 const boardRouters = express.Router();
 

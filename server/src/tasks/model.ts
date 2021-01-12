@@ -1,8 +1,11 @@
+import { ITask } from "./interface";
 import mongoose from "mongoose";
 
-import { DONE, IN_PROGRESS, TO_DO } from "../constants/index.js";
+import { DONE, IN_PROGRESS, TO_DO } from "../constants";
 
-const taskSchema = mongoose.Schema({
+interface ITaskModel extends ITask, mongoose.Document {}
+
+const taskSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
@@ -26,6 +29,6 @@ const taskSchema = mongoose.Schema({
 });
 
 // turn schema to model
-const TaskModel = mongoose.model("Task", taskSchema);
+const TaskModel = mongoose.model<ITaskModel>("Task", taskSchema);
 
 export default TaskModel;

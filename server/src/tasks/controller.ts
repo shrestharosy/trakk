@@ -1,15 +1,18 @@
-import TaskModel from "../models/task.js";
+import { Request, Response } from "express";
 
-export const getTasks = async (req, res) => {
+import TaskModel from "./model";
+import * as services from "./service";
+
+export const getTasks = async (req: Request, res: Response) => {
   try {
-    const tasks = await TaskModel.find();
+    const tasks = TaskModel.find();
     res.status(200).json(tasks);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
 };
 
-export const createTask = async (req, res) => {
+export const createTask = async (req: Request, res: Response) => {
   const taskDetails = req.body;
   const newTask = new TaskModel(taskDetails);
   try {
@@ -20,21 +23,24 @@ export const createTask = async (req, res) => {
   }
 };
 
-export const getTaskById = async (req, res) => {
+export const getTaskById = async (req: Request, res: Response) => {
   try {
     const taskId = req.params.id;
-    const task = await TaskModel.findById(taskId);
+    const task = TaskModel.findById(taskId);
     res.status(200).json(task);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
-export const updateTask = async (req, res) => {
+export const updateTask = async (
+  req: Request<{ id: string }>,
+  res: Response
+) => {
   try {
     const taskId = req.params.id;
     const { description, creator, status } = req.body;
-    let task = await TaskModel.findById(taskId);
+    const task = await services.getTaskById(taskId);
     task.description = description;
     task.creator = creator;
     task.status = status;
@@ -45,10 +51,10 @@ export const updateTask = async (req, res) => {
   }
 };
 
-export const deleteTask = async (req, res) => {
+export const deleteTask = async (req: Request, res: Response) => {
   try {
     const taskId = req.params.id;
-    await TaskModel.findByIdAndDelete(taskId);
+    TaskModel.findByIdAndDelete(taskId);
     res.status(200).json("Task deleted");
   } catch (error) {
     res.status(400).json({ message: error.message });
